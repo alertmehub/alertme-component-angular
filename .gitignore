@@ -7,6 +7,7 @@
 
 # dependencies
 /node_modules
+/projects/alertme-component-angular/node_modules
 
 # IDEs and editors
 /.idea

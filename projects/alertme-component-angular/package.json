@@ -1,0 +1,25 @@
+{
+  "name": "alertme-component-angular",
+  "version": "1.0.0",
+  "description": "Alertme Angular Component",
+  "license": "MIT",
+  "keywords": [
+    "Alerts",
+    "Preferences",
+    "Angular",
+    "Email",
+    "SMS"
+  ],
+  "author": {
+    "name": "RDA",
+    "url": "http://www.rdacorp.com"
+  },
+  "homepage": "https://www.alertmehub.com/",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "angular2-multiselect-dropdown": "^4.1.1",
+    "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.3.3"
+  }
+}

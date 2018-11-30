@@ -16,6 +16,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "alertme-component-angular": [
+        "dist/alertme-component-angular"
+      ],
+      "alertme-component-angular/*": [
+        "dist/alertme-component-angular/*"
+      ]
+    }
   }
 }

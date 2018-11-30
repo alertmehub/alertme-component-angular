@@ -1,0 +1,135 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DeliveryOption, AlertSubscription, LookupList, LookupValue, Subscriber } from '../../services/subscriber/subscriber.models';
+import { OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
+
+@Component({
+  selector: 'am-subscription',
+  templateUrl: './subscription.component.html',
+  styleUrls: ['./subscription.component.css']
+})
+export class SubscriptionComponent implements OnInit, OnChanges {
+
+  @Input() subscriber: Subscriber;
+  @Input() subscription: AlertSubscription;
+  @Input() deliveryOptions: DeliveryOption[];
+  @Input() externalParameters: object;
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  // Working storage for user interaction
+  active: boolean;
+  parameters: object;
+  deliverTo: any[];
+  dropdownSettings: any = {};
+
+  isDirty: boolean;
+
+  // User clicked a delivery option checkbox
+  deliveryOptionChanged(id: string) {
+    const foundAt = this.deliverTo.indexOf(id);
+    if (foundAt >= 0) {
+      // Remove
+      this.deliverTo.splice(foundAt, 1);
+    } else {
+      // Add
+      this.deliverTo.push(id);
+    }
+    this.isDirty = true;
+  }
+
+  ngOnInit() {
+    this.init();
+  }
+
+  onItemSelect(item: any) {
+    this.isDirty = true;
+  }
+  OnItemDeSelect(item: any) {
+    this.isDirty = true;
+  }
+  onSelectAll(items: any) {
+    this.isDirty = true;
+  }
+  onDeSelectAll(items: any) {
+    this.isDirty = true;
+  }
+
+  ngOnChanges() {
+    this.init();
+  }
+
+  init() {
+
+    this.isDirty = false;
+
+    // Save the original values passed into this component
+    this.active = this.subscription.active;
+    this.deliverTo = [...this.subscription.deliverTo];
+
+    // Create a deep copy of the parameters (in case the user clicks cancel)
+    this.parameters = JSON.parse(JSON.stringify(this.subscription.parameters || {}));
+
+    // Copy any external parameters passed in from the component
+    for (const parameter of this.subscription.topic.parameters) {
+      const externalValue = this.externalParameters ? (this.externalParameters as any)[parameter.name] : null ;
+      if (externalValue) {
+        (this.parameters as any)[parameter.name] = externalValue;
+      }
+    }
+  }
+
+  // Format the phone number as a standard display format
+  formatPhoneForDisplay(phone: string): string {
+    const e164Pattern = /^\+1(\d{3})(\d{3})(\d{4})$/;
+    if (e164Pattern.test(phone)) {
+      return phone.replace(e164Pattern, '($1) $2-$3');
+    }
+    return phone;
+  }
+
+  // Finds the lookup list of the given name
+  findLookup(name: string): LookupList {
+    return this.subscription.topic.appId.lookupLists.find((i) => i.name === name);
+  }
+
+  // Returns settings for this lookuplist
+  lookupSettings(name: string): LookupValue[] {
+    const lookupList = this.findLookup(name);
+
+    const settings = {
+      singleSelection: lookupList.stype === 'single',
+      enableSearchFilter: true,
+      classes: 'am-dropdown',
+    } as any;
+    if (lookupList.group && lookupList.group.length > 0) {
+      settings.groupBy = 'group';
+    }
+    return settings;
+  }
+
+  statusChanged() {
+    this.isDirty = true;
+    // If turning off, then go ahead and save
+    if (!this.active) {
+      this.saveSubscription();
+    }
+  }
+
+  parameterChanged() {
+    this.isDirty = true;
+  }
+
+  // Save the user inputs back to the passed in preference object
+  saveSubscription() {
+    this.subscription.active = this.active;
+    this.subscription.deliverTo = [...this.deliverTo];
+    this.subscription.parameters = this.parameters;
+    this.isDirty = false;
+    this.save.emit(null);
+  }
+
+  // Reinitilaze with original values
+  cancelEdits() {
+    this.ngOnInit();
+  }
+
+}

@@ -1,27 +1,94 @@
-# AlertmeComponentAngularLibApp
+# `alertme-component-angular`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
+This is the angular version of the alertme component.  It is dropped onto a company's website to allow their users/customers to sign up for relevant business alerts.
 
-## Development server
+## Overview
+The alertme system is a SaaS offering that enables end users to subscribe to relevant business alerts.  e.g.
+  - Banking
+    - Alert me when my balance is below $x
+    - Alert me when a transaction exceeds $x
+  - eCommerce
+    - Alert me when my order ships
+    - Alert me of new products
+  - Service provider
+    - Alert me of planned outages
+    - Alert me when my usage limit is near.
+  - etc.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The actual business alert topics are configured via an administration site.  This component displays these topics and collects the preferences for each customer.
 
-## Code scaffolding
+## Installation
+To pull the alertme component into your Angular project, 
+```
+npm install alertme-component-angular
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
+Then place the component onto a page that will be used to subscribe to alerts.  Here is an example page that uses the alertme preference component <am-subscriber>
 
-## Build
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+@Component({
+  selector: 'app-alerts',
+  template: `
+    <h1>Alerts!!</h1>
+    <p>Sign up to be notified of important news and events.</p>
+    <div style='background-color: white; padding: 10px'>
+      <am-subscriber 
+        [token]="token" [publisherId]="publisherId"
+        [appId]="applicationId">
+      </am-subscriber>
+    </div>
+    `
+})
+export class AlertsComponent implements OnInit {
+  token: string;
+  publisherId = '2f27a22d980134dfc56cf8da5aa1d02ea08802d26804f0db604439281aff14c5';
+  applicationId = '5f27a22d980134dfc56cf8da5aa1d02ea08802d26804f0db604439281aff14c6';
 
-## Running unit tests
+  constructor(private userService: UserService) { }
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  ngOnInit() {
+      this.token = this.userService.alertmeToken;
+  });
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+}
+```
 
-## Further help
+The above example assumes that the existing customer portal has a login process for the customer, and that an Alertme authorization token for that customer is retrieved from the Alertme API and is stored in a service called userService.
+An authorization token is acquired by making a server-side GET request to https://api.alertmehub.com/api/v1/subscriber/token/[userid] and setting the Authorization header to the alertme API key.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+   - The userid can be any string that uniquely identifies your customer, who is currently logged into your customer portal - such as a customer id, account id, or any unique hashed value.
+   - See the next section for how to get the client id and API key.
+
+Example server-side code to retrieve an Alertme token using the Axios node library.
+
+``` typescript
+    var alertmeClient = axios.create({
+      baseURL: 'https://api.alertmehub.com/api/v1',
+      timeout: 1000,
+      headers: {'Authorization': '2f27a22d980134dfc56cf8da5aa1d02ea08802d26804f0db604439281aff14c6'}
+    });
+
+    // Retrieve Data
+    let amToken = await alertmeClient.get("subscriber/token/" + userId );
+```
+
+It is important that the Alertme API key be treated as a secret and not exposed in client-side code.  The example code shown above should only be run via server-side code.  
+
+Note: there is also a node package that abstracts the api calls.  See https://github.com/alertmehub/alertme-api-node 
+
+## Alertme Registration
+In order to use Alertme, you must first register at https://admin.alertmehub.com. 
+
+After registering you'll be assigned a publishing profile and an API key that you can use to obtain customer tokens as described in the previous section.
+
+## Configure Applications and Alert Topics
+The alert topics that your customers can subscribe to are managed via the Alertme administration site.  https://admin.alertmehub.com
+
+## Sending alerts
+Sending alerts to subscribers is also handled via the API.  See https://github.com/alertmehub/alertme-api-node 
+

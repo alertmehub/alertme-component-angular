@@ -1,0 +1,20 @@
+<div class="am-manage-contact-button">
+  <button class="am-button" (click)="openModal()">Manage Contact Info</button>
+</div>
+<div *ngIf="showModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h4>Contact Info</h4>
+      <div *ngFor="let option of this.editedOptions">
+        <span class="contact-label">{{option.name}}</span>
+        <input class="contact-input" id="{{option.value}}" name="{{option.value}}" [(ngModel)]="option.value" pattern="(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3})|([\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6})"/>
+
+        <svg *ngIf="option.deliveryType =='sms'" class="am-icon"><use xlink:href="#chat" /></svg>
+        <svg *ngIf="option.deliveryType =='email'" class="am-icon"><use xlink:href="#email" /></svg>
+      </div>
+      <div class="modal-footer">
+        <button class="am-button" (click)="saveContactInfo()">Save</button>
+      </div>
+    </div>
+  </div>
