@@ -3,18 +3,21 @@
 </div>
 <div *ngIf="showModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close" (click)="closeModal()">&times;</span>
-      <h4>Contact Info</h4>
+    <div class="am-contact-info">
+      <span class="am-contact-close" (click)="closeModal()">&times;</span>
+      <div class="am-contact-info-header">Contact Info</div>
+
+  <form #doForm="ngForm">
       <div *ngFor="let option of this.editedOptions">
-        <span class="contact-label">{{option.name}}</span>
-        <input class="contact-input" id="{{option.value}}" name="{{option.value}}" [(ngModel)]="option.value" pattern="(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3})|([\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6})"/>
+        <input class="am-contact-input" id="{{option._id}}" [name]="option._id" [placeholder]="option.name"
+        [(ngModel)]="option.value" [pattern]="validationExpression(option.deliveryType)"/>
 
         <svg *ngIf="option.deliveryType =='sms'" class="am-icon"><use xlink:href="#chat" /></svg>
         <svg *ngIf="option.deliveryType =='email'" class="am-icon"><use xlink:href="#email" /></svg>
       </div>
-      <div class="modal-footer">
-        <button class="am-button" (click)="saveContactInfo()">Save</button>
+      <div class="am-contact-info-footer">
+        <button *ngIf="doForm.valid" class="am-button" (click)="saveContactInfo()">Save</button>
       </div>
+      </form>
     </div>
   </div>

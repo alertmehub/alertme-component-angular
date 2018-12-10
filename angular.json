@@ -24,7 +24,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/dropdown.theme.css"
+              "src/default.theme.css"
             ],
             "scripts": []
           },

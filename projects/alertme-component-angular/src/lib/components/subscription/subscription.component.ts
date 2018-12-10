@@ -36,6 +36,15 @@ export class SubscriptionComponent implements OnInit, OnChanges {
     this.isDirty = true;
   }
 
+  optionsEmpty() {
+    for (const option of this.deliveryOptions) {
+      if (option.value) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   ngOnInit() {
     this.init();
   }
@@ -120,9 +129,13 @@ export class SubscriptionComponent implements OnInit, OnChanges {
 
   // Save the user inputs back to the passed in preference object
   saveSubscription() {
-    this.subscription.active = this.active;
     this.subscription.deliverTo = [...this.deliverTo];
     this.subscription.parameters = this.parameters;
+
+    if (this.subscription.deliverTo.length === 0) {
+      this.active = false;
+    }
+    this.subscription.active = this.active;
     this.isDirty = false;
     this.save.emit(null);
   }

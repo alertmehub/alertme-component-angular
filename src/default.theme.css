@@ -1,0 +1,205 @@
+/* Subscription Styles */
+.am-subscription {
+  background: #fcfcfc;
+  border: 0.0625rem solid #acacac;
+}
+
+.am-subscription-parameters {
+}
+
+.am-subscription-deliver-to {
+  border: 1px solid lightgrey;
+}
+
+.am-subscription-save-cancel {
+}
+
+.am-icon {
+  width: 2em;
+  height: 1em;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.am-topic-name{
+  font-weight: bold;
+  font-size: 12pt;
+}
+.am-topic-description{
+  font-size: 12pt;
+}
+
+.am-input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 20px;
+  color: #333;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+
+.am-checkbox input[type="checkbox"] + label {
+  color: #000;
+}
+
+.am-checkbox input[type="checkbox"] + label:before {
+  color: #0079fe;
+  border: 2px solid #0079fe;
+}
+
+.am-checkbox input[type="checkbox"] + label:after {
+  background-color: #0079fe;
+}
+
+.am-checkbox input[type="checkbox"]:disabled + label:before {
+  border-color: #cccccc;
+}
+
+.am-checkbox input[type="checkbox"]:disabled:checked + label:before {
+  background-color: #cccccc;
+}
+
+.am-checkbox input[type="checkbox"] + label:after {
+  border-color: #ffffff;
+}
+
+.am-checkbox input[type="radio"]:checked + label:before {
+  background-color: white;
+}
+
+.am-checkbox input[type="checkbox"]:checked + label:before {
+  background: #0079fe;
+}
+
+angular2-multiselect .c-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+angular2-multiselect .selected-list .c-list .c-token {
+  background: #0079fe;
+}
+.selected-list .c-list .c-token .c-label {
+  color: #fff;
+}
+.selected-list .c-list .c-token .c-remove svg {
+  fill: #fff;
+}
+
+angular2-multiselect .selected-list .c-angle-down svg,
+.selected-list .c-angle-up svg {
+  fill: #333;
+}
+
+angular2-multiselect .dropdown-list ul li:hover {
+  background: #f5f5f5;
+}
+
+angular2-multiselect .arrow-up,
+.arrow-down {
+  border-bottom: 15px solid #fff;
+}
+
+angular2-multiselect .arrow-2 {
+  border-bottom: 15px solid #ccc;
+}
+
+angular2-multiselect .list-area {
+  border: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0px 1px 5px #959595;
+}
+
+angular2-multiselect .select-all {
+  border-bottom: 1px solid #ccc;
+}
+
+angular2-multiselect .list-filter {
+  border-bottom: 1px solid #ccc;
+}
+angular2-multiselect .list-filter .c-search svg {
+  fill: #888;
+}
+angular2-multiselect .list-filter .c-clear svg {
+  fill: #888;
+}
+angular2-multiselect .selected-item {
+  background: #e9f4ff;
+}
+
+angular2-multiselect.btn-iceblue {
+  background: #0079fe;
+  border: 1px solid #ccc;
+  color: #fff;
+}
+
+.pure-checkbox input[type="checkbox"]:focus + label:before,
+.pure-checkbox input[type="checkbox"]:hover + label:before {
+  border-color: #0079fe;
+  background-color: #f2f2f2;
+}
+
+.pure-checkbox input[type="checkbox"] + label {
+  color: #000;
+}
+
+.pure-checkbox input[type="checkbox"] + label:before {
+  color: #0079fe;
+  border: 2px solid #0079fe;
+}
+
+.pure-checkbox input[type="checkbox"] + label:after {
+  background-color: #0079fe;
+}
+
+.pure-checkbox input[type="checkbox"]:disabled + label:before {
+  border-color: #cccccc;
+}
+
+.pure-checkbox input[type="checkbox"]:disabled:checked + label:before {
+  background-color: #cccccc;
+}
+
+.pure-checkbox input[type="checkbox"] + label:after {
+  border-color: #ffffff;
+}
+
+.pure-checkbox input[type="radio"]:checked + label:before {
+  background-color: white;
+}
+
+.pure-checkbox input[type="checkbox"]:checked + label:before {
+  background: #0079fe;
+}
+
+/* Contact Info Styles */
+
+.am-contact-info {
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 40em !important;
+}
+
+.am-contact-input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 20px;
+  color: #333;
+  padding: .3em;
+  margin-bottom: 10px;
+}
+
+.am-contact-info-footer {
+}
+
+.am-contact-close {
+  color: #aaaaaa;
+  font-weight: bold;
+}
+
+.am-contact-close:hover,
+.am-contact-close:focus {
+  color: #000;
+}

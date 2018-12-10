@@ -1,51 +1,51 @@
-<div class="card fluid">
+<div class="card fluid am-subscription">
   <div class="section">
-    <div>
-      <div>
-        <div style="float:right;">
+    <div class="am-subscription-header">
+      <div class="am-subscription-on-off">
           <am-slider [(state)]="active" (stateChange)="statusChanged()"></am-slider>
-        </div>
-        <div class="am-alert-name">{{subscription.topic.label}}</div>
-        <div class="am-alert-description">{{subscription.topic.description}}</div>
       </div>
+      <div class="am-topic-name">{{subscription.topic.label}}</div>
+      <div class="am-topic-description">{{subscription.topic.description}}</div>
     </div>
-    <div *ngIf="active">
-      <div>
-        <span *ngIf="isDirty" class="am-alert-save-cancel">
-          <button class="btn"  (click)="saveSubscription()">Save</button>
-          <button class="btn" (click)="cancelEdits()">Cancel</button>
-        </span>
-      </div>
-      <div class="am-alert-parameters">
+    <div class="am-subscription-content" *ngIf="active">
+      <div class="am-subscription-parameters">
         <div *ngFor="let parameter of subscription.topic.parameters">
           <div *ngIf="parameter.ptype !== 'hidden'">
-            <label>{{parameter.label}}</label><br/>
+            <label class="am-parameter-label">{{parameter.label}}</label>
             <input class="am-input" *ngIf="parameter.ptype === 'text'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
-
             <input class="am-input" type="number" step="any" *ngIf="parameter.ptype === 'currency'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
-
             <input class="am-input" type="number" step="any" *ngIf="parameter.ptype === 'number'"  [(ngModel)]="parameters[parameter.name]" (keyup)="parameterChanged()">
 
             <angular2-multiselect *ngIf="parameter.ptype === 'lookup'"
-            [data]="findLookup(parameter.lookup).values" [(ngModel)]="parameters[parameter.name]"
-            [settings]="lookupSettings(parameter.lookup)"
-            (onSelect)="statusChanged()"
-            (onDeSelect)="statusChanged()"
-            (onSelectAll)="statusChanged()"
-            (onDeSelectAll)="statusChanged()"></angular2-multiselect><br>
+              [data]="findLookup(parameter.lookup).values" [(ngModel)]="parameters[parameter.name]"
+              [settings]="lookupSettings(parameter.lookup)"
+              (onSelect)="statusChanged()"
+              (onDeSelect)="statusChanged()"
+              (onSelectAll)="statusChanged()"
+              (onDeSelectAll)="statusChanged()">
+          </angular2-multiselect><br>
           </div>
         </div>
       </div>
-      <div class="am-alert-deliver-to">
+      <div class="am-subscription-deliver-to">
         <div *ngFor="let option of deliveryOptions">
-          <div class="pure-checkbox" *ngIf="option.value" >
+          <div class="am-checkbox" *ngIf="option.value" >
             <input  type="checkbox" name="options" value="{{option._id}}" id="option{{subscription.topicId}}{{option._id}}"
               [checked]="this.deliverTo.indexOf(option._id) >= 0" (click)="deliveryOptionChanged(option._id)">
             <label for="option{{subscription.topicId}}{{option._id}}">{{option.name || formatPhoneForDisplay(option.value)}}</label>
             <svg *ngIf="option.deliveryType =='sms'" class="am-icon"><use xlink:href="#chat" /></svg>
             <svg *ngIf="option.deliveryType =='email'" class="am-icon"><use xlink:href="#email" /></svg></div>
         </div>
+        <div *ngIf="optionsEmpty()">
+          Please enter your contact information
+        </div>
         <am-contact-info [subscriber]="subscriber"></am-contact-info>
+      </div>
+      <div  class="am-subscription-save-cancel">
+        <span *ngIf="isDirty">
+          <button class="am-button"  (click)="saveSubscription()">Save</button>
+          <button class="am-button" (click)="cancelEdits()">Cancel</button>
+        </span>
       </div>
     </div>
   </div>

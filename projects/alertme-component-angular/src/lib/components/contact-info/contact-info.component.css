@@ -16,49 +16,60 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content */
-.modal-content {
+.am-contact-info {
   background-color: #fefefe;
   margin: auto;
-  padding: 0px 20px 20px 20px;
+  padding: 20px;
   border: 1px solid #888;
-  width: 350px;
+  width: 20em;
 }
 
-/* Modal Content */
-.modal-footer {
+.am-contact-info-default {
+
+  width: 20em;
+}
+
+.am-contact-info-header {
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+.am-contact-info-footer {
   margin-top: 20px;
   text-align: right;
 }
 
-/* The Close Button */
-.close {
+.am-contact-close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin-top: -20px;
+  margin-right: -10px;
 }
 
-.close:hover,
-.close:focus {
+.am-contact-close:hover,
+.am-contact-close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-.contact-label {
+.am-contact-label {
   min-width: 120px;
   display: inline-table;
   margin-bottom: 10px;
 }
 
-.contact-input {
-  padding: 5px;
+.am-contact-input {
+  padding: .3em;
+  margin-bottom: .5em;
 }
 
-.am-icon {
-  width: 16px;
-  height: 13px;
-  padding-left: 5px;
-  padding-right: 5px;
+input:invalid {
+  border-left: 5px solid #a94442;
+}
+
+input:valid {
+  border-left: 5px solid #42A948
 }

@@ -14,6 +14,7 @@ export class ContactInfoComponent implements OnInit {
   phonePattern = /[\+]?[1]?[-\s\.]?[(]?(\d{3})[)]?[-\s\.]?(\d{3})[-\s\.]?(\d{4})/;
   e164Pattern = /^\+1(\d{3})(\d{3})(\d{4})$/;
   emailPattern =  /\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}/;
+  inputPhonePattern = /[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}/;
 
   @Input() subscriber: Subscriber;
   @Output() save: EventEmitter<any> = new EventEmitter();
@@ -22,6 +23,13 @@ export class ContactInfoComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  validationExpression(option: string) {
+    if (option === 'email') {
+      return '\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}';
+    }
+    return '[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}';
   }
 
   openModal() {
