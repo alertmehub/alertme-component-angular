@@ -1,6 +1,6 @@
 {
   "name": "alertme-component-angular",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "Alertme Angular Component",
   "license": "MIT",
   "keywords": [
@@ -14,12 +14,18 @@
     "name": "RDA",
     "url": "http://www.rdacorp.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alertmehub/alertme-component-angular.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alertmehub/alertme-component-angular/issues"
+  },
   "homepage": "https://www.alertmehub.com/",
   "peerDependencies": {
     "@angular/common": "^7.0.0",
     "@angular/core": "^7.0.0",
     "angular2-multiselect-dropdown": "^4.1.1",
-    "rxjs": "~6.3.3",
-    "rxjs-compat": "^6.3.3"
+    "rxjs": "~6.3.3"
   }
 }

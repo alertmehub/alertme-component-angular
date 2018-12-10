@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
-import { SubscriptionComponent, SubscriberComponent, SliderComponent, ContactInfoComponent } from './components';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { SubscriberComponent} from './components/subscriber/subscriber.component';
+import { SliderComponent} from './components/slider/slider.component';
+import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 
 @NgModule({
   declarations: [
@@ -26,4 +29,4 @@ import { SubscriptionComponent, SubscriberComponent, SliderComponent, ContactInf
     ContactInfoComponent
   ]
 })
-export class AlertmeComponentAngularModule { }
+export class AlertmeModule { }

@@ -5,10 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "buildlib": "ng build alertme-component-angular",
+    "buildlib": "rimraf ./dist && ng build alertme-component-angular && npm run copy_theme",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "copy_theme": "copyfiles -f projects/alertme-component-angular/src/lib/default-theme.css dist/alertme-component-angular/lib/",
     "npm_pack": "cd dist/alertme-component-angular && npm pack",
     "package": "npm run buildlib && npm run npm_pack"
   },
@@ -24,15 +25,14 @@
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
     "angular2-multiselect-dropdown": "^4.1.1",
-    "rxjs": "~6.3.3",
-    "rxjs-compat": "^6.3.3",
     "core-js": "^2.5.4",
+    "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
     "@angular-devkit/build-ng-packagr": "~0.10.0",
-    "@angular/cli": "~7.0.3",
+    "@angular/cli": "~7.1.0",
     "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
     "@types/node": "~8.9.4",
@@ -52,6 +52,8 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.1.1"
+    "typescript": "~3.1.1",
+    "rimraf": "^2.6.2",
+    "copyfiles": "^2.1.0"
   }
 }

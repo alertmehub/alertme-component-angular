@@ -13,8 +13,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public header = 'UMD Demo';
   token = 'token1';
-  publisherId = '5bfdbf5d3394c927142164e6';
-  appId = '5bfdbf5e3394c927142164e7';
+  publisherId = '5c008bd095727a03bc6e3263';
+  appId = '5c008bd095727a03bc6e3264';
   externalParameters: object = {parameter3: 'Testing123', parameter4: '1'};
   serviceUrl = 'http://localhost:3001/api/v1';
 }

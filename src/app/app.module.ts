@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
-import { AlertmeComponentAngularModule} from 'alertme-component-angular';
+import { AlertmeModule} from 'alertme-component-angular';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { AlertmeComponentAngularModule} from 'alertme-component-angular';
   imports: [
     BrowserModule,
     FormsModule,
-    AlertmeComponentAngularModule
+    AlertmeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
